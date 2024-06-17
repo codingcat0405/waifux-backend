@@ -52,7 +52,7 @@ const app = new Elysia()
 
   .group("/api", (group) =>
       group
-        .use(authPlugin)
+        // .use(authPlugin)
         .use(nftPlugin)
     //add more plugins here
   )
