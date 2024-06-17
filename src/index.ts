@@ -61,4 +61,6 @@ const app = new Elysia()
 console.log(`🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`);
 console.log(`🚀 Swagger UI is running at http://${app.server?.hostname}:${app.server?.port}/swagger-ui`)
 
+
+
 // export default app //export app for testing
