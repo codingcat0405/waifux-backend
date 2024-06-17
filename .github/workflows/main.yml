@@ -1,0 +1,17 @@
+name: ci-cd
+
+on:
+  push:
+    branches: master
+
+jobs:
+  cdp-be:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: |
+          commit_hash=$(git rev-parse --short $GITHUB_SHA)
+          docker build -t localhost:32000/waifux-backend:$commit_hash .
+          docker push localhost:32000/waifux-backend:$commit_hash
+          kubectl set image deployment/waifux-backend waifux-backend=localhost:32000/waifux-backend:$commit_hash -n waifux-backend
