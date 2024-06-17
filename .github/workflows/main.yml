@@ -1,0 +1,17 @@
+name: ci
+
+on:
+  push:
+    branches: master
+
+jobs:
+  waifux-be:
+    runs-on: coding-cat
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: |
+          commit_hash=$(git rev-parse --short $GITHUB_SHA)
+          docker build -t localhost:32000/waifux-be:$commit_hash .
+          docker push localhost:32000/waifux-be:$commit_hash
+          kubectl set image deployment/waifux-be waifux-be=localhost:32000/waifux-be:$commit_hash -n waifux-be
