@@ -6,7 +6,7 @@ on:
 
 jobs:
   cdp-be:
-    runs-on: self-hosted
+    runs-on: coding-cat
     steps:
       - name: Checkout
         uses: actions/checkout@v3
